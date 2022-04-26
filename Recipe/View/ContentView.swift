@@ -2,15 +2,14 @@
 //  ContentView.swift
 //  Recipe
 //
-//  Created by Akhrorkhuja on 25/04/22.
+//  Created by Akhrorkhuja on 26/04/22.
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabBar()
     }
 }
 
