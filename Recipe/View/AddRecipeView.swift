@@ -8,10 +8,35 @@
 import SwiftUI
 
 struct AddRecipeView: View {
+    @State private var title = ""
+    @State private var description = ""
+    @State private var recipeType = "Fast food"
+    let recipeTypes = ["Fast food", "Cake", "Homemade meal"]
     var body: some View {
         NavigationView {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                .navigationTitle("Add recipe")
+            Form {
+                Section {
+                    TextField("Title", text: $title)
+                    ZStack(alignment: .leading) {
+                        if description.isEmpty {
+                            Text("Description")
+                                .foregroundColor(Color(UIColor.placeholderText))
+                                .padding(.top, -5)
+                        }
+                        TextEditor(text: $description)
+                            .padding(.leading, -3)
+                    }
+                    Picker("Choose recipe type", selection: $recipeType) {
+                        ForEach(recipeTypes, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
+                Button("Add") {
+                    //
+                }
+            }
+            .navigationTitle("Add recipe")
         }
     }
 }

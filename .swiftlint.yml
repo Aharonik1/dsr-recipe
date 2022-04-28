@@ -6,3 +6,5 @@ opt_in_rules:
     
 excluded:
     - Pods
+
+line_length: 1000

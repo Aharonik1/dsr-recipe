@@ -14,6 +14,10 @@ struct TabBar: View {
                 .tabItem {
                     Label("Recipes", systemImage: "house")
                 }
+            AddRecipeView()
+                .tabItem {
+                    Label("Add", systemImage: "plus.circle")
+                }
         }
     }
 }
