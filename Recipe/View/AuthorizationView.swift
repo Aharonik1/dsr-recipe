@@ -9,10 +9,8 @@ import SwiftUI
 
 struct AuthorizationView: View {
     var body: some View {
-        NavigationView {
-            Text("Hello")
-                .navigationTitle("Authorization")
-        }
+        Text("Hello")
+            .navigationTitle("Authorization")
     }
 }
 

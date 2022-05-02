@@ -17,6 +17,7 @@
 		88C84F4B28171048003DC988 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C84F4A28171048003DC988 /* RecipeDetailView.swift */; };
 		88C84F4E281777BD003DC988 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C84F4D281777BD003DC988 /* ContentView.swift */; };
 		88C84F50281777DD003DC988 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C84F4F281777DD003DC988 /* TabBar.swift */; };
+		88E4E675281AA62000282F64 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4E674281AA62000282F64 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		88C84F4A28171048003DC988 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		88C84F4D281777BD003DC988 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88C84F4F281777DD003DC988 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		88E4E674281AA62000282F64 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		890AD6329C47D4A82BF95B09 /* Pods-Recipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe.release.xcconfig"; path = "Target Support Files/Pods-Recipe/Pods-Recipe.release.xcconfig"; sourceTree = "<group>"; };
 		B46FBAC628506233DA6B9825 /* Pods_Recipe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recipe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD83498BA45F543E95DE4B2F /* Pods-Recipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe.debug.xcconfig"; path = "Target Support Files/Pods-Recipe/Pods-Recipe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		88C84F4128170EC5003DC988 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				88E4E674281AA62000282F64 /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				88C84F4928170FEB003DC988 /* AddRecipeView.swift in Sources */,
 				88C84F342816C858003DC988 /* RecipeApp.swift in Sources */,
 				88C84F50281777DD003DC988 /* TabBar.swift in Sources */,
+				88E4E675281AA62000282F64 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

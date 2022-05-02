@@ -5,7 +5,7 @@ target 'Recipe' do
   use_frameworks!
 
   pod 'SwiftLint'
-  pod 'Realm', '~> 10.25'
+  pod 'RealmSwift', '~> 10.25'
   pod 'Swinject', '~> 2.8'
   pod 'Moya/Combine', '~> 15.0'
 

@@ -6,39 +6,56 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct RecipesView: View {
+    @ObservedResults(Recipe.self, sortDescriptor: SortDescriptor.init(keyPath: "recipeTitle", ascending: true)) var recipesFetched
     @State private var users = ["Paul", "Taylor", "Adele"]
     var body: some View {
         NavigationView {
-            List {
-                ForEach(users, id: \.self) { _ in
-                    NavigationLink(destination: RecipeDetailView()) {
-                        HStack {
-                            AsyncImage(url: URL(string: "https://www.themealdb.com/images/media/meals/9ptx0a1565090843.jpg")) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 100, height: 100, alignment: .center)
-                            } placeholder: {
-                                Image(systemName: "photo")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100, alignment: .center)
+            ZStack {
+                if recipesFetched.isEmpty {
+                    Text("Add new recipes")
+                } else {
+                    List {
+                        ForEach(recipesFetched, id: \.self) { recipe in
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                HStack {
+                                    AsyncImage(url: URL(string: "https://www.themealdb.com/images/media/meals/9ptx0a1565090843.jpg")) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 100, height: 100, alignment: .center)
+                                    } placeholder: {
+                                        Image(systemName: "photo")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 100, height: 100, alignment: .center)
+                                    }
+                                    VStack(alignment: .leading) {
+                                        Text(recipe.recipeTitle)
+                                            .font(.headline)
+                                        Text(recipe.recipeType.rawValue)
+                                            .font(.subheadline)
+                                    }
+                                }
                             }
-                            Text("Portuguese custard tarts")
-                                .font(.headline)
                         }
+                        .onDelete(perform: delete)
                     }
                 }
-                .onDelete(perform: delete)
             }
             .navigationTitle("Recipes")
+            .toolbar {
+                NavigationLink(destination: AddRecipeView(), label: {
+                        Image(systemName: "plus")
+                })
+            }
         }
         .navigationViewStyle(.stack)
     }
     func delete(at offsets: IndexSet) {
-        users.remove(atOffsets: offsets)
+        $recipesFetched.remove(atOffsets: offsets)
     }
 }
 
