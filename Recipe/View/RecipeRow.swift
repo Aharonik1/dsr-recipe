@@ -1,43 +1,39 @@
 //
-//  RecipeDetailView.swift
+//  RecipeRow.swift
 //  Recipe
 //
-//  Created by Akhrorkhuja on 25/04/22.
+//  Created by Akhrorkhuja on 05/05/22.
 //
 
 import SwiftUI
 
-struct RecipeDetailView: View {
+struct RecipeRow: View {
     @State var recipe: Recipe
     var body: some View {
-        ScrollView {
+        HStack {
             AsyncImage(url: URL(string: "https://www.themealdb.com/images/media/meals/9ptx0a1565090843.jpg")) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100, alignment: .center)
             } placeholder: {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
+                    .frame(width: 100, height: 100, alignment: .center)
             }
-            VStack {
+            VStack(alignment: .leading) {
                 Text(recipe.recipeTitle)
-                    .font(.largeTitle)
-                    .bold()
-                    .multilineTextAlignment(.center)
+                    .font(.headline)
                 Text(recipe.recipeType.rawValue)
-                    .bold()
-                Text(recipe.recipeDesc)
-                    .multilineTextAlignment(.center)
-                    .padding()
+                    .font(.subheadline)
             }
         }
-        .ignoresSafeArea(.container, edges: .top)
     }
 }
 
-struct RecipeDetailView_Previews: PreviewProvider {
+struct RecipeRow_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView(recipe: Recipe())
+        RecipeRow(recipe: Recipe())
     }
 }

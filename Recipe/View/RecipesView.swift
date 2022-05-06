@@ -9,53 +9,34 @@ import SwiftUI
 import RealmSwift
 
 struct RecipesView: View {
-    @ObservedResults(Recipe.self, sortDescriptor: SortDescriptor.init(keyPath: "recipeTitle", ascending: true)) var recipesFetched
-    @State private var users = ["Paul", "Taylor", "Adele"]
+    @StateObject private var recipesVM = RecipesVM()
+    @ObservedResults(Recipe.self, sortDescriptor: SortDescriptor.init(keyPath: "recipeTitle", ascending: true)) var recipes
     var body: some View {
         NavigationView {
             ZStack {
-                if recipesFetched.isEmpty {
-                    Text("Add new recipes")
+                if recipes.isEmpty {
+                    Text("Add new recipes!")
                 } else {
                     List {
-                        ForEach(recipesFetched, id: \.self) { recipe in
+                        ForEach(recipes, id: \.id) { recipe in
                             NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                HStack {
-                                    AsyncImage(url: URL(string: "https://www.themealdb.com/images/media/meals/9ptx0a1565090843.jpg")) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 100, height: 100, alignment: .center)
-                                    } placeholder: {
-                                        Image(systemName: "photo")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 100, height: 100, alignment: .center)
-                                    }
-                                    VStack(alignment: .leading) {
-                                        Text(recipe.recipeTitle)
-                                            .font(.headline)
-                                        Text(recipe.recipeType.rawValue)
-                                            .font(.subheadline)
-                                    }
-                                }
+                                RecipeRow(recipe: recipe)
                             }
                         }
-                        .onDelete(perform: delete)
+                        .onDelete { offSet in
+                            recipesVM.delete(at: offSet)
+                        }
                     }
                 }
             }
             .navigationTitle("Recipes")
             .toolbar {
                 NavigationLink(destination: AddRecipeView(), label: {
-                        Image(systemName: "plus")
+                    Image(systemName: "plus")
                 })
             }
         }
         .navigationViewStyle(.stack)
-    }
-    func delete(at offsets: IndexSet) {
-        $recipesFetched.remove(atOffsets: offsets)
     }
 }
 

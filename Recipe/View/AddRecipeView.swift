@@ -9,11 +9,12 @@ import SwiftUI
 import RealmSwift
 
 struct AddRecipeView: View {
-    @ObservedResults(Recipe.self) private var recipesFetched
+    @StateObject private var addRecipeVM = AddRecipeVM()
     @State private var title = ""
     @State private var description = ""
     @State private var recipeType: RecipeType = .healthy
     @State private var showingAlert = false
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var body: some View {
         Form {
             Section {
@@ -39,13 +40,10 @@ struct AddRecipeView: View {
                     showingAlert = true
                     return
                 }
-                let recipe = Recipe()
-                recipe.recipeTitle = title
-                recipe.recipeDesc = description
-                recipe.recipeType = recipeType
-                $recipesFetched.append(recipe)
+                addRecipeVM.add(title: title, description: description, type: recipeType)
                 title.removeAll()
                 description.removeAll()
+                self.mode.wrappedValue.dismiss()
             }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Error"), message: Text("Title or description is empty!"), dismissButton: .default(Text("OK")))
