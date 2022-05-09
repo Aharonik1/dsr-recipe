@@ -10,6 +10,7 @@ import RealmSwift
 
 struct RecipesView: View {
     @StateObject private var recipesVM = RecipesVM()
+    @AppStorage("loginStatus") var loginStatus = true
     @ObservedResults(Recipe.self, sortDescriptor: SortDescriptor.init(keyPath: "recipeTitle", ascending: true)) var recipes
     var body: some View {
         NavigationView {
@@ -31,9 +32,16 @@ struct RecipesView: View {
             }
             .navigationTitle("Recipes")
             .toolbar {
-                NavigationLink(destination: AddRecipeView(), label: {
-                    Image(systemName: "plus")
-                })
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Log out") {
+                        loginStatus = !recipesVM.signOut()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AddRecipeView(), label: {
+                        Image(systemName: "plus")
+                    })
+                }
             }
         }
         .navigationViewStyle(.stack)

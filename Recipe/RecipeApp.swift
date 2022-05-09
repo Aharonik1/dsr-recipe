@@ -7,9 +7,13 @@
 
 import SwiftUI
 import RealmSwift
+import FirebaseCore
 
 @main
 struct RecipeApp: SwiftUI.App {
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

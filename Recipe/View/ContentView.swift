@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("loginStatus") var loginStatus = false
     var body: some View {
-        TabBar()
+        if loginStatus {
+            RecipesView()
+        } else {
+            AuthorizationView()
+        }
     }
 }
 

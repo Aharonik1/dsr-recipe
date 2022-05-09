@@ -8,5 +8,7 @@ target 'Recipe' do
   pod 'RealmSwift', '~> 10.25'
   pod 'Swinject', '~> 2.8'
   pod 'Moya/Combine', '~> 15.0'
-
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'GoogleSignIn'
 end
