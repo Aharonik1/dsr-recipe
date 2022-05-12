@@ -11,12 +11,24 @@ import RealmSwift
 extension AddRecipeView {
     class AddRecipeVM: ObservableObject {
         @ObservedResults(Recipe.self, sortDescriptor: SortDescriptor.init(keyPath: "recipeTitle", ascending: true)) var recipesFetched
-        func add(title: String, description: String, type: RecipeType) {
+        @Published var title = ""
+        @Published var description = ""
+        @Published var recipeType: RecipeType = .healthy
+        @Published var showingAlert = false
+        func add(completion: @escaping (Bool) -> Void) {
+            if title.isEmpty || description.isEmpty {
+                showingAlert = true
+                completion(false)
+                return
+            }
             let recipe = Recipe()
             recipe.recipeTitle = title
             recipe.recipeDesc = description
-            recipe.recipeType = type
+            recipe.recipeType = recipeType
             $recipesFetched.append(recipe)
+            title.removeAll()
+            description.removeAll()
+            completion(true)
         }
     }
 }
