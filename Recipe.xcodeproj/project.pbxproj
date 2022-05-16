@@ -92,9 +92,9 @@
 			children = (
 				887D5003282807400025DFAE /* Info.plist */,
 				88C84F332816C858003DC988 /* RecipeApp.swift */,
+				88C84F4128170EC5003DC988 /* Model */,
 				88C84F4328170ED9003DC988 /* View */,
 				88C84F4228170ECC003DC988 /* ViewModel */,
-				88C84F4128170EC5003DC988 /* Model */,
 				88C84F372816C859003DC988 /* Assets.xcassets */,
 				8877600E2827B261002CDF66 /* GoogleService-Info.plist */,
 				88C84F392816C859003DC988 /* Preview Content */,
