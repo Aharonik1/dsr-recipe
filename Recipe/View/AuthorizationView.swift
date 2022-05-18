@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AuthorizationView: View {
-    @AppStorage("loginStatus") var loginStatus = false
     @StateObject private var authorizationVM = AuthorizationVM()
     var body: some View {
         VStack {
@@ -17,9 +16,7 @@ struct AuthorizationView: View {
                 .font(.title2)
                 .padding()
             Button("with GOOGLE") {
-                authorizationVM.login(completion: { res in
-                    loginStatus = res
-                })
+                authorizationVM.login()
             }
         }
         .navigationTitle("Authorization")
