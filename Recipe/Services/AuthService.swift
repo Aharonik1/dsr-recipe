@@ -10,31 +10,42 @@ import FirebaseAuth
 import GoogleSignIn
 import Combine
 
+enum SignInState {
+    case signedIn
+    case signedOut
+}
+
+typealias StateRes = (SignInState) -> Void
+
 class AuthService: ObservableObject {
-    enum SignInState {
-        case signedIn
-        case signedOut
-    }
     private var resUser: GIDGoogleUser?
     private var state: SignInState = .signedOut
-    func signIn() -> SignInState {
+    func signIn(completion: @escaping StateRes) {
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-                authenticateUser(for: user, with: error)
+                authenticateUser(for: user, with: error) { _ in  }
                 self.resUser = user
             }
         } else {
-            guard let clientID = FirebaseApp.app()?.options.clientID else { return state }
+            guard let clientID = FirebaseApp.app()?.options.clientID else {
+                completion(state)
+                return
+            }
             let configuration = GIDConfiguration(clientID: clientID)
-            guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else { return state }
+            guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {
+                completion(state)
+                return
+            }
             GIDSignIn.sharedInstance.signIn(with: configuration, presenting: presentingViewController) { [unowned self] user, error in
-                authenticateUser(for: user, with: error)
+                authenticateUser(for: user, with: error) {_ in
+                    completion(state)
+                }
                 self.resUser = user
             }
         }
-        return state
+        return
     }
-    func signOut() -> SignInState {
+    func signOut(completion: @escaping StateRes) {
         GIDSignIn.sharedInstance.signOut()
         do {
             try Auth.auth().signOut()
@@ -42,9 +53,10 @@ class AuthService: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
-        return state
+        completion(state)
+        return
     }
-    private func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
+    private func authenticateUser(for user: GIDGoogleUser?, with error: Error?, completion: @escaping StateRes) {
         if let error = error {
             print(error.localizedDescription)
             return
@@ -56,6 +68,7 @@ class AuthService: ObservableObject {
                 print(error.localizedDescription)
             } else {
                 self.state = .signedIn
+                completion(state)
             }
         }
     }

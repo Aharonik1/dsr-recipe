@@ -13,18 +13,19 @@ import GoogleSignIn
 extension RecipesView {
     class RecipesVM: ObservableObject {
         @ObservedResults(Recipe.self, sortDescriptor: SortDescriptor.init(keyPath: "recipeTitle", ascending: true)) var recipesFetched
+        private var authService = AuthService()
         func delete(at offsets: IndexSet) {
             $recipesFetched.remove(atOffsets: offsets)
         }
-        func signOut() -> Bool {
-            GIDSignIn.sharedInstance.signOut()
-            do {
-                try Auth.auth().signOut()
-            } catch {
-                print(error)
-                return false
+        func signOut(completion: @escaping (Bool) -> Void) {
+            authService.signOut { state in
+                switch state {
+                case .signedIn:
+                    completion(true)
+                case .signedOut:
+                    completion(false)
+                }
             }
-            return true
         }
     }
 }

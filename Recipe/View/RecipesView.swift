@@ -34,7 +34,9 @@ struct RecipesView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Log out") {
-                        loginStatus = !recipesVM.signOut()
+                        recipesVM.signOut { state in
+                            loginStatus = state
+                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
