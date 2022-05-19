@@ -11,6 +11,9 @@
 		8877600F2827B261002CDF66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8877600E2827B261002CDF66 /* GoogleService-Info.plist */; };
 		887D500528292DEC0025DFAE /* AuthorizationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887D500428292DEC0025DFAE /* AuthorizationVM.swift */; };
 		887EB46228342F93003D238C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887EB46128342F93003D238C /* AuthService.swift */; };
+		887EB46428356EF7003D238C /* RecipeFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887EB46328356EF7003D238C /* RecipeFilterView.swift */; };
+		887EB46628356F17003D238C /* RecipeFilterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887EB46528356F17003D238C /* RecipeFilterVM.swift */; };
+		887EB469283573D6003D238C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887EB468283573D6003D238C /* DateExtension.swift */; };
 		88C84F342816C858003DC988 /* RecipeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C84F332816C858003DC988 /* RecipeApp.swift */; };
 		88C84F382816C859003DC988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C84F372816C859003DC988 /* Assets.xcassets */; };
 		88C84F3B2816C859003DC988 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C84F3A2816C859003DC988 /* Preview Assets.xcassets */; };
@@ -31,6 +34,9 @@
 		887D5003282807400025DFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		887D500428292DEC0025DFAE /* AuthorizationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationVM.swift; sourceTree = "<group>"; };
 		887EB46128342F93003D238C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		887EB46328356EF7003D238C /* RecipeFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFilterView.swift; sourceTree = "<group>"; };
+		887EB46528356F17003D238C /* RecipeFilterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFilterVM.swift; sourceTree = "<group>"; };
+		887EB468283573D6003D238C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		88C84F302816C858003DC988 /* Recipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C84F332816C858003DC988 /* RecipeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeApp.swift; sourceTree = "<group>"; };
 		88C84F372816C859003DC988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +85,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		887EB467283573C1003D238C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				887EB468283573D6003D238C /* DateExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		88C84F272816C858003DC988 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +119,7 @@
 				88C84F4128170EC5003DC988 /* Model */,
 				88C84F4328170ED9003DC988 /* View */,
 				88C84F4228170ECC003DC988 /* ViewModel */,
+				887EB467283573C1003D238C /* Extensions */,
 				887EB46028342F80003D238C /* Services */,
 				88C84F372816C859003DC988 /* Assets.xcassets */,
 				8877600E2827B261002CDF66 /* GoogleService-Info.plist */,
@@ -132,9 +147,10 @@
 		88C84F4228170ECC003DC988 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				887D500428292DEC0025DFAE /* AuthorizationVM.swift */,
 				88E4E6762824150700282F64 /* RecipesVM.swift */,
 				88E4E67E2824E47300282F64 /* AddRecipeVM.swift */,
-				887D500428292DEC0025DFAE /* AuthorizationVM.swift */,
+				887EB46528356F17003D238C /* RecipeFilterVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -148,6 +164,7 @@
 				88E4E67828243DE200282F64 /* RecipeRow.swift */,
 				88C84F4A28171048003DC988 /* RecipeDetailView.swift */,
 				88C84F4828170FEB003DC988 /* AddRecipeView.swift */,
+				887EB46328356EF7003D238C /* RecipeFilterView.swift */,
 				88C84F4F281777DD003DC988 /* TabBar.swift */,
 			);
 			path = View;
@@ -300,7 +317,10 @@
 				88C84F4E281777BD003DC988 /* ContentView.swift in Sources */,
 				88E4E67F2824E47300282F64 /* AddRecipeVM.swift in Sources */,
 				88C84F4728170FA5003DC988 /* RecipesView.swift in Sources */,
+				887EB46628356F17003D238C /* RecipeFilterVM.swift in Sources */,
+				887EB46428356EF7003D238C /* RecipeFilterView.swift in Sources */,
 				887EB46228342F93003D238C /* AuthService.swift in Sources */,
+				887EB469283573D6003D238C /* DateExtension.swift in Sources */,
 				88E4E67928243DE200282F64 /* RecipeRow.swift in Sources */,
 				88E4E6772824150700282F64 /* RecipesVM.swift in Sources */,
 				88C84F4928170FEB003DC988 /* AddRecipeView.swift in Sources */,

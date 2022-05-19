@@ -39,7 +39,10 @@ struct RecipesView: View {
                         }
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: RecipeFilterView(), label: {
+                        Image(systemName: "slider.horizontal.3")
+                    })
                     NavigationLink(destination: AddRecipeView(), label: {
                         Image(systemName: "plus")
                     })

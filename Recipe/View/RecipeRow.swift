@@ -25,6 +25,8 @@ struct RecipeRow: View {
             VStack(alignment: .leading) {
                 Text(recipe.recipeTitle)
                     .font(.headline)
+                Text(recipe.recipeDate.converToString)
+                    .font(.subheadline)
                 Text(recipe.recipeType.rawValue)
                     .font(.subheadline)
             }

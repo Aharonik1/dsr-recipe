@@ -25,9 +25,9 @@ struct AddRecipeView: View {
                         .padding(.leading, -3)
                 }
                 Picker("Choose recipe type", selection: $addRecipeVM.recipeType) {
-                    ForEach(RecipeType.allCases, id: \.self) { recipe in
-                        Text(recipe.rawValue)
-                            .tag(recipe)
+                    ForEach(RecipeType.allCases, id: \.self) { recipeType in
+                        Text(recipeType.rawValue)
+                            .tag(recipeType)
                     }
                 }
             }

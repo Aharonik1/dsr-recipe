@@ -13,9 +13,11 @@ class Recipe: Object, Identifiable {
     @Persisted var recipeTitle: String
     @Persisted var recipeDesc: String
     @Persisted var recipeType: RecipeType = .healthy
+    @Persisted var recipeDate = Date()
 }
 
 enum RecipeType: String, PersistableEnum, CaseIterable {
+    case all = "All"
     case fastFood = "Fast food"
     case dessert = "Dessert"
     case salad = "Salad"
