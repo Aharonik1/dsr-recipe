@@ -20,9 +20,25 @@ extension RecipeFilterView {
         @Published var recipesData = [Recipe]()
         @Published var sortType: SortByType = .byDate
         @Published var sortByRecipeType: RecipeType = .all
+        @Published var searchText = ""
+        @Published var searchResults = [Recipe]()
         init() {
             recipes
                 .sorted(byKeyPath: sortType == .byName ? "recipeTitle" : "recipeDate", ascending: true)
+                .forEach { recipe in
+                    recipesData.append(recipe)
+                }
+        }
+        func searchByText() {
+            recipesData = []
+            if searchText.isEmpty {
+                recipes.forEach { recipe in
+                    recipesData.append(recipe)
+                }
+                return
+            }
+            recipes
+                .filter("recipeTitle CONTAINS[c] %@", searchText)
                 .forEach { recipe in
                     recipesData.append(recipe)
                 }

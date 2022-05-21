@@ -31,19 +31,21 @@ struct RecipeFilterView: View {
                     recipeFilterVM.sortAndFilter()
                 }
             }
-            VStack {
-                if recipeFilterVM.recipesData.isEmpty {
-                    Text("Nothing found!")
-                } else {
-                    List {
-                        ForEach(recipeFilterVM.recipesData, id: \.id) { recipe in
-                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                RecipeRow(recipe: recipe)
-                            }
+            if recipeFilterVM.recipesData.isEmpty {
+                Text("Nothing found!")
+            } else {
+                List {
+                    ForEach(recipeFilterVM.recipesData, id: \.id) { recipe in
+                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                            RecipeRow(recipe: recipe)
                         }
                     }
                 }
             }
+        }
+        .searchable(text: $recipeFilterVM.searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .onChange(of: recipeFilterVM.searchText) { _ in
+            recipeFilterVM.searchByText()
         }
         .navigationTitle("Sort & filter")
     }
